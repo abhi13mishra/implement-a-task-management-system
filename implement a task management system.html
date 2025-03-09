@@ -1,0 +1,42 @@
+<script>
+    function taskbar(){
+  let tasks = [];
+  return{
+    addTask(title){
+      tasks.push({title, status:"Panding"})
+    return tasks;
+  },
+  markComplete(title){
+    tasks = tasks.map(task => task.title == title ? {...task, status : "complete"} : task )
+  
+  return tasks;
+},
+filterbystatus(status){
+    let filterdTasks = tasks.filter(task => task.status == status)
+    console.log(`${status} tasks:`,filterdTasks)
+    return filterdTasks
+},
+listTasks(){
+  tasks.forEach((task, index)=>console.log(`{task: "${task.title}", status: "${task.status}"}`))
+  return tasks;
+},
+countTask(){
+  let taskCount = tasks.reduce((acc, task)=>{
+    acc[task.status]=(acc[task.status] || 0) +1;
+    return acc;
+  },{})
+  console.log(`task count :` , taskCount)
+  return taskCount;
+}
+}
+}
+
+let taskManager  = taskbar()
+taskManager.addTask("coding")
+taskManager.addTask("speking")
+taskManager.addTask("reading")
+taskManager.markComplete("coding")
+taskManager.listTasks()
+taskManager.filterbystatus("complete")
+taskManager.countTask()
+</script>
